@@ -1,0 +1,16 @@
+openssl rand -out chave.bin 32
+
+openssl enc -aes-256-cbc -salt -in chiling.jpg -out chiling.jpg.enc -pass file:chave.bin
+
+openssl enc -d -aes-256-cbc -in chiling.jpg.enc -out chiling.jpg -pass file:chave.bin
+
+## Criptografia Assimétrica
+
+openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
+
+openssl rsa -pubout -in private.pem -out public.pem
+
+openssl pkeyutl -encrypt -inkey public.pem -pubin -in mensagem.txt -out mensagem_rsa.enc
+
+
+openssl pkeyutl -decrypt -inkey private.pem -in mensagem_rsa.enc -out mensagem_rsa_decifrada.txt

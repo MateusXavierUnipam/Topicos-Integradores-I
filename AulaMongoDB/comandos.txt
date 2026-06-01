@@ -1,0 +1,44 @@
+docker-compose up -d
+
+docker exec -it mongodb mongosh
+
+db
+
+use portal educacional
+
+db.createCollection("cursos")
+
+db.cursos.insertMany([
+{nome: "Inteligência Artificial"},
+{nome: "Engenharia de Dados"},
+{nome: "Programação I"}])
+
+db.createCollection("matérias")
+
+db.matérias.insertMany([
+{nome:"Programação I", curso: "Inteligência Artificial"},
+{nome: "Cálculo", curso: "Engenharia de Dados"},
+{nome: "Web I", curso: "Programação I"}])
+
+
+db.createCollection("alunos")
+
+db.alunos.insertMany([
+{nome: "Joaquim", idade: 1, curso: "Inteligência Artificial"},
+{nome: "Cecília", idade: 3, curso: "Engenharia de Dados"}])
+
+
+
+db.createCollection("professores")
+
+db.professores.insertMany([
+{nome: "Bruno Vinícius", idade: 23, materia: "Programação I"},
+{nome: "Vinícius Bruno", idade: 33, materia: "Web I"}])
+
+
+show collections
+
+db.curso.find()
+
+
+
